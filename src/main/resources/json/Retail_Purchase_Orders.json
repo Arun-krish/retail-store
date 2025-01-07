@@ -1,0 +1,27 @@
+[
+  {
+    "customerId": "677d38c74af64635b0b07a33",
+    "orderTotal": 120,
+    "orderDate": "2024-10-01"
+  },
+  {
+    "customerId": "677d38c74af64635b0b07a33",
+    "orderTotal": 75,
+    "orderDate": "2024-11-01"
+  },
+  {
+    "customerId": "677d38c74af64635b0b07a33",
+    "orderTotal": 50,
+    "orderDate": "2024-12-02"
+  },
+  {
+    "customerId": "677d38d34af64635b0b07a34",
+    "orderTotal": 30,
+    "orderDate": "2025-01-01"
+  },
+  {
+    "customerId": "677d38d34af64635b0b07a34",
+    "orderTotal": 200,
+    "orderDate": "2025-01-10"
+  }
+]
