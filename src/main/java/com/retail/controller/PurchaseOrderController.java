@@ -25,7 +25,7 @@ public class PurchaseOrderController {
      * @throws Exception
      */
     @PostMapping(value = "/savePurchaseOrder")
-    ResponseEntity<ResponsePojo> savePurchaseOrder(@RequestBody PurchaseOrders purchaseOrders) throws Exception {
+    public ResponseEntity<ResponsePojo> savePurchaseOrder(@RequestBody PurchaseOrders purchaseOrders) throws Exception {
         return new ResponseEntity<>(purchaseOrderService.savePurchaseOrder(purchaseOrders), HttpStatus.OK);
     }
 
