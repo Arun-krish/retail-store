@@ -11,7 +11,7 @@ This application is used to generate Reward points for Purchase orders.
 # Tech Stack
 - Java 17
 - Spring Boot 3.4
-- MongoDB 5.2
+- MongoDB 5.0
 
 # API Details
 - **To save Customer** -'http://localhost:8080/api/customer/saveCustomer' \
