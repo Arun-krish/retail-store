@@ -17,7 +17,7 @@ This application is used to generate Reward points for Purchase orders.
 - **To save Customer** -'http://localhost:8080/api/customer/saveCustomer' \
   --data '{
     "name":"AK1",
-    "mobile":"9876543210"
+    "mobile":"9876543210" }'
 - **To save Purchase Order** -'http://localhost:8080/api/purchaseOrder/savePurchaseOrder'
     --data '{
     "customerId": "677be0ef6ffe6034a2e95c63",
@@ -30,3 +30,9 @@ This application is used to generate Reward points for Purchase orders.
       --header 'fromDate: 01/01/2025' \
       --header 'toDate: 01/01/2025' \
       --header 'lastThreeMonths: true'
+    - If only From date is chosen data will populate from the date to current date.
+    - If Both From and To date is chosen ,data will populate between the range.
+    - If lastThreeMonths tag is given as true then the last three months data is populated.
+    - If none of the options are chosen by default it populates all orders for the customer
+# Unit Test Results
+![Unit Test Results](https://github.com/Arun-krish/retail-store/blob/master/src/main/resources/testresults/TestResults.png)
