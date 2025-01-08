@@ -4,8 +4,8 @@ This application is used to generate Reward points for Purchase orders.
 # Features
 - Save Customers
 - Save Purchase orders based on Customers
-- Bulk upload Purchase orders
-- Calculte Reward Points based on Purchase Orders
+- Bulk process Purchase orders
+- Calculate Reward Points based on Purchase Orders
 - Fetch Customer based Order history
 
 # Tech Stack
