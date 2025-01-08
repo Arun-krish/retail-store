@@ -9,9 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.ZoneId;
-import java.util.Date;
-
 @Service
 @Slf4j
 public class CustomerService {
@@ -27,7 +24,7 @@ public class CustomerService {
      */
     public ResponsePojo saveCustomer(Customers customer) throws Exception {
         try {
-            customer.setCreatedOn(new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            customer.setCreatedBy(ApplicationConstants.ADMIN_USER);
             customerRepository.save(customer);
             return new ResponsePojo(ApplicationConstants.SUCCESS, "Customer Saved Successfully!",customer);
         } catch (Exception ex) {

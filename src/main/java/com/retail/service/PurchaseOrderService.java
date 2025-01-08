@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.InputStream;
-import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -48,7 +47,6 @@ public class PurchaseOrderService {
         try {
             calculateRewardsBasedOnPurchaseOrder(purchaseOrders);
             generateOrderNumber(purchaseOrders);
-            purchaseOrders.setCreatedOn(new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             purchaseOrderRepository.save(purchaseOrders);
             return new ResponsePojo(ApplicationConstants.SUCCESS, "Purchase Order Saved!", purchaseOrders);
         } catch (Exception e) {
@@ -83,7 +81,6 @@ public class PurchaseOrderService {
             purchaseOrdersList.forEach(order -> {
                 generateOrderNumber(order);
                 calculateRewardsBasedOnPurchaseOrder(order);
-                order.setCreatedOn(new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
                 purchaseOrderRepository.save(order);
             });
 
@@ -131,7 +128,7 @@ public class PurchaseOrderService {
         } else if (lastThreeMonths) {
             purchaseOrdersList = purchaseOrderRepository.findByCustomerIdAndOrderDateGreaterThanEqual(customerId, DateUtils.fetchThreeMonthsBackDateFromCurrentDate());
         } else {
-            throw new InputValidationException("Kindly Choose Time-Frame(From Date/To Date/Last 3 Months)");
+            purchaseOrdersList=purchaseOrderRepository.findByCustomerId(customerId);
         }
         try {
 

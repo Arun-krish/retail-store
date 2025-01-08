@@ -3,6 +3,7 @@ package com.retail.controller;
 import com.retail.entity.Customers;
 import com.retail.service.CustomerService;
 import com.retail.util.ResponsePojo;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class CustomerController {
      * @throws Exception
      */
     @PostMapping(value = "/saveCustomer")
-    public ResponseEntity<ResponsePojo> saveCustomer(@RequestBody Customers customers) throws Exception{
+    public ResponseEntity<ResponsePojo> saveCustomer(@Valid @RequestBody Customers customers) throws Exception{
         return new ResponseEntity<>(customerService.saveCustomer(customers), HttpStatus.OK);
     }
 }

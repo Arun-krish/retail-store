@@ -3,6 +3,7 @@ package com.retail.controller;
 import com.retail.entity.PurchaseOrders;
 import com.retail.service.PurchaseOrderService;
 import com.retail.util.ResponsePojo;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class PurchaseOrderController {
      * @throws Exception
      */
     @PostMapping(value = "/savePurchaseOrder")
-    public ResponseEntity<ResponsePojo> savePurchaseOrder(@RequestBody PurchaseOrders purchaseOrders) throws Exception {
+    public ResponseEntity<ResponsePojo> savePurchaseOrder(@Valid @RequestBody PurchaseOrders purchaseOrders) throws Exception {
         return new ResponseEntity<>(purchaseOrderService.savePurchaseOrder(purchaseOrders), HttpStatus.OK);
     }
 

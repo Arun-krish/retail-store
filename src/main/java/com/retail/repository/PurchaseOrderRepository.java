@@ -12,4 +12,5 @@ public interface PurchaseOrderRepository extends MongoRepository<PurchaseOrders,
 
 
     List<PurchaseOrders> findByCustomerIdAndOrderDateGreaterThanEqual(String customerId, Date fromDate);
+    List<PurchaseOrders> findByCustomerId(String customerId);
 }
