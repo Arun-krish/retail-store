@@ -34,5 +34,40 @@ This application is used to generate Reward points for Purchase orders.
     - If Both From and To date is chosen ,data will populate between the range.
     - If lastThreeMonths tag is given as true then the last three months data is populated.
     - If none of the options are chosen by default it populates all orders for the customer
+    - **Response**-
+          {
+    "status": "SUCCESS",
+    "statusDescription": "Details Fetched Successfully!",
+    "data": {
+        "Customer Name": "ak",
+        "Customer Mobile": "9876543210",
+        "Total Orders": 2,
+        "Total Order Value": 230.0,
+        "Total Reward Points": 250.0,
+        "Orders": [
+            {
+                "id": "677e6519a2993a67a18112b2",
+                "customerId": "677e6480a2993a67a18112a8",
+                "orderId": "O4",
+                "orderDate": "2025-01-01",
+                "orderTotal": 30.0,
+                "totalRewards": 0.0,
+                "createdOn": "2025-01-08",
+                "createdBy": "ADMIN_USER"
+            },
+            {
+                "id": "677e6519a2993a67a18112b3",
+                "customerId": "677e6480a2993a67a18112a8",
+                "orderId": "O5",
+                "orderDate": "2025-01-10",
+                "orderTotal": 200.0,
+                "totalRewards": 250.0,
+                "createdOn": "2025-01-08",
+                "createdBy": "ADMIN_USER"
+            }
+        ]
+    }
+}
+
 # Unit Test Results
 ![Unit Test Results](https://github.com/Arun-krish/retail-store/blob/master/src/main/resources/testresults/TestResults.png)
