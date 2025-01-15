@@ -60,9 +60,8 @@ public class CustomerControllerTests {
         mockMvc.perform(request).andExpect(MockMvcResultMatchers.jsonPath("$.status").value(ApplicationConstants.SUCCESS));
 
     }
+
     ObjectMapper mapper;
-
-
 
 
     @Test
@@ -81,7 +80,6 @@ public class CustomerControllerTests {
         assertNotNull(methodArgumentNotValidException.getFieldErrors());
         assertEquals("name", methodArgumentNotValidException.getFieldErrors().get(0).getField());
         assertEquals("must not be null", methodArgumentNotValidException.getFieldErrors().get(0).getDefaultMessage());
-
 
 
         // Scenario 2 - Invalid Mobile number

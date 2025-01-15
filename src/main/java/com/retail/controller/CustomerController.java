@@ -21,12 +21,13 @@ public class CustomerController {
 
     /**
      * To Save Customers
+     *
      * @param customers
      * @return
      * @throws Exception
      */
     @PostMapping(value = "/saveCustomer")
-    public ResponseEntity<ResponsePojo> saveCustomer(@Valid @RequestBody Customers customers) throws Exception{
+    public ResponseEntity<ResponsePojo> saveCustomer(@Valid @RequestBody Customers customers) throws Exception {
         return new ResponseEntity<>(customerService.saveCustomer(customers), HttpStatus.OK);
     }
 }

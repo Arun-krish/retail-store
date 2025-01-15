@@ -32,7 +32,6 @@ public class PurchaseOrderService {
     CustomerRepository customerRepository;
 
 
-
     /**
      * To save individual Purchase Order
      *
@@ -106,17 +105,18 @@ public class PurchaseOrderService {
     }
 
 
-
     /**
      * To fetch order history based on Customer Id and From date/To date/Last 3 months
      *
      * @param customerId
      * @param fromDate
+     * @param toDate
+     * @param lastThreeMonths
      * @return
      * @throws Exception
      */
     public ResponsePojo fetchOrderHistory(String customerId, Date fromDate, Date toDate, boolean lastThreeMonths) throws Exception {
-        Optional<Customers> customersOptional=customerRepository.findById(customerId);
+        Optional<Customers> customersOptional = customerRepository.findById(customerId);
         if (customersOptional.isEmpty()) {
             throw new InputValidationException("Invalid Customer ID -" + customerId);
         }
@@ -128,7 +128,7 @@ public class PurchaseOrderService {
         } else if (lastThreeMonths) {
             purchaseOrdersList = purchaseOrderRepository.findByCustomerIdAndOrderDateGreaterThanEqual(customerId, DateUtils.fetchThreeMonthsBackDateFromCurrentDate());
         } else {
-            purchaseOrdersList=purchaseOrderRepository.findByCustomerId(customerId);
+            purchaseOrdersList = purchaseOrderRepository.findByCustomerId(customerId);
         }
         try {
 

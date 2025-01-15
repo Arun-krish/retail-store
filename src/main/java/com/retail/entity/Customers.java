@@ -26,7 +26,7 @@ public class Customers {
 
     @NotNull
     @Pattern(regexp = "^[0-9]+$", message = "Only digits allowed in mobile number")
-    @Size(min = 10,max = 10, message = "Mobile number should be between 10-15 numbers")
+    @Size(min = 10, max = 10, message = "Mobile number should be between 10-15 numbers")
     String mobile;
     @CreatedDate
     LocalDate createdOn;

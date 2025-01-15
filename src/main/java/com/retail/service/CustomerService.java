@@ -18,6 +18,7 @@ public class CustomerService {
 
     /**
      * To Save Customers
+     *
      * @param customer
      * @return
      * @throws Exception
@@ -26,7 +27,7 @@ public class CustomerService {
         try {
             customer.setCreatedBy(ApplicationConstants.ADMIN_USER);
             customerRepository.save(customer);
-            return new ResponsePojo(ApplicationConstants.SUCCESS, "Customer Saved Successfully!",customer);
+            return new ResponsePojo(ApplicationConstants.SUCCESS, "Customer Saved Successfully!", customer);
         } catch (Exception ex) {
             log.error("Failed to Save Customer ", ex);
             throw new OperationFailureException(ex.getLocalizedMessage());

@@ -27,7 +27,6 @@ public class CustomerServiceTest {
     CustomerRepository customerRepository;
 
 
-
     @Test
     void testCreateCustomer() throws Exception {
         Customers customers = new Customers("1234", "name", "987654321", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), ApplicationConstants.ADMIN_USER);

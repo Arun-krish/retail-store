@@ -24,6 +24,7 @@ public class PurchaseOrderController {
 
     /**
      * To save individual Purchase Order
+     *
      * @param purchaseOrders
      * @return
      * @throws Exception
@@ -35,16 +36,18 @@ public class PurchaseOrderController {
 
     /**
      * To process rewards based on bulk Purchase Orders
+     *
      * @return
      * @throws Exception
      */
     @GetMapping(value = "/bulkProcessPurchaseOrders")
-    ResponseEntity<ResponsePojo> bulkProcessPurchaseOrders()  throws Exception{
+    ResponseEntity<ResponsePojo> bulkProcessPurchaseOrders() throws Exception {
         return new ResponseEntity<>(purchaseOrderService.bulkProcessPurchaseOrders(), HttpStatus.OK);
     }
 
     /**
      * To fetch order history based on Customer Id and From date
+     *
      * @param customerId
      * @param fromDate
      * @return
@@ -57,15 +60,15 @@ public class PurchaseOrderController {
                                                    @RequestHeader(required = false) boolean lastThreeMonths) throws Exception {
         try {
             Date from = null;
-            if(fromDate != null) {
-                from =DateUtils.convertStringToDate(fromDate);
+            if (fromDate != null) {
+                from = DateUtils.convertStringToDate(fromDate);
             }
             Date to = null;
-            if(toDate != null) {
-                to=DateUtils.convertStringToDate(toDate);
+            if (toDate != null) {
+                to = DateUtils.convertStringToDate(toDate);
             }
             return new ResponseEntity<>(purchaseOrderService.fetchOrderHistory(customerId, from, to, lastThreeMonths), HttpStatus.OK);
-        } catch (ParseException e){
+        } catch (ParseException e) {
             throw new InputValidationException("Date should be in yyyy-MM-dd format");
         }
     }

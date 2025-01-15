@@ -112,7 +112,7 @@ public class PurchaseOrderServiceTest {
         assertAll(
                 () -> assertNotNull(response),
                 () -> assertEquals(ApplicationConstants.SUCCESS, response.getStatus()),
-                ()-> assertEquals(5,purchaseOrders.size())
+                () -> assertEquals(5, purchaseOrders.size())
         );
     }
 
