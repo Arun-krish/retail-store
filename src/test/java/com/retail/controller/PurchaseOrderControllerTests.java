@@ -1,11 +1,11 @@
-package com.retail;
+package com.retail.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.retail.controller.PurchaseOrderController;
 import com.retail.entity.PurchaseOrders;
 import com.retail.service.PurchaseOrderService;
 import com.retail.util.ApplicationConstants;
+import com.retail.util.DateUtils;
 import com.retail.util.ResponsePojo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.*;
 
@@ -120,8 +118,8 @@ public class PurchaseOrderControllerTests {
     @Test
     public void testBulkProcessPurchaseOrders() throws Exception {
         List<PurchaseOrders> purchaseOrdersList = Arrays.asList(
-                new PurchaseOrders("C1", convertStringToDate("2025-01-01").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 120.0),
-                new PurchaseOrders("C1", convertStringToDate("2025-01-05").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 120.0));
+                new PurchaseOrders("C1", DateUtils.convertStringToDate("2025-01-01").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 120.0),
+                new PurchaseOrders("C1", DateUtils.convertStringToDate("2025-01-05").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 120.0));
 
         when(purchaseOrderService.bulkProcessPurchaseOrders()).thenReturn(new ResponsePojo(ApplicationConstants.SUCCESS, "Purchase Order Saved!", purchaseOrdersList));
 
@@ -135,8 +133,8 @@ public class PurchaseOrderControllerTests {
     @Test
     public void testFetchOrderHistory() throws Exception {
         List<PurchaseOrders> purchaseOrdersList = Arrays.asList(
-                new PurchaseOrders("C1", convertStringToDate("2025-01-01").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 120.0),
-                new PurchaseOrders("C1", convertStringToDate("2025-01-05").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 120.0));
+                new PurchaseOrders("C1", DateUtils.convertStringToDate("2025-01-01").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 120.0),
+                new PurchaseOrders("C1", DateUtils.convertStringToDate("2025-01-05").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 120.0));
         Map<String, Object> responseMap = new LinkedHashMap<>();
         responseMap.put(ApplicationConstants.CUSTOMER_NAME, "test");
         responseMap.put(ApplicationConstants.CUSTOMER_MOBILE, "9876543210");
@@ -154,8 +152,5 @@ public class PurchaseOrderControllerTests {
 
     }
 
-    Date convertStringToDate(String date) throws ParseException {
-        Date convertedDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-        return convertedDate;
-    }
+
 }

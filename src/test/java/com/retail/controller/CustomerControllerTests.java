@@ -1,8 +1,7 @@
-package com.retail;
+package com.retail.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.retail.controller.CustomerController;
 import com.retail.entity.Customers;
 import com.retail.service.CustomerService;
 import com.retail.util.ApplicationConstants;
@@ -40,6 +39,15 @@ public class CustomerControllerTests {
     private CustomerService customerService;
 
     private MockMvc mockMvc;
+
+    @BeforeEach
+    void setUp() {
+        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+    }
+
+
     @Test
     public void testCreateCustomer() throws Exception {
         Customers customers = new Customers("1234", "name", "9876543210", new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), ApplicationConstants.ADMIN_USER);
@@ -54,12 +62,6 @@ public class CustomerControllerTests {
     }
     ObjectMapper mapper;
 
-    @BeforeEach
-    void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
-        mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
-    }
 
 
 

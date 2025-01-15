@@ -1,7 +1,9 @@
 package com.retail.controller;
 
 import com.retail.entity.PurchaseOrders;
+import com.retail.exception.InputValidationException;
 import com.retail.service.PurchaseOrderService;
+import com.retail.util.DateUtils;
 import com.retail.util.ResponsePojo;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.Date;
 
 @RestController
@@ -49,9 +52,21 @@ public class PurchaseOrderController {
      */
     @GetMapping(value = "/fetchOrderHistory")
     ResponseEntity<ResponsePojo> fetchOrderHistory(@RequestHeader(required = true) String customerId,
-                                                   @RequestHeader(required = false) Date fromDate,
-                                                   @RequestHeader(required = false) Date toDate,
-                                                   @RequestHeader(required = false) boolean lastThreeMonths) throws Exception{
-        return new ResponseEntity<>(purchaseOrderService.fetchOrderHistory(customerId,fromDate,toDate,lastThreeMonths), HttpStatus.OK);
+                                                   @RequestHeader(required = false) String fromDate,
+                                                   @RequestHeader(required = false) String toDate,
+                                                   @RequestHeader(required = false) boolean lastThreeMonths) throws Exception {
+        try {
+            Date from = null;
+            if(fromDate != null) {
+                from =DateUtils.convertStringToDate(fromDate);
+            }
+            Date to = null;
+            if(toDate != null) {
+                to=DateUtils.convertStringToDate(toDate);
+            }
+            return new ResponseEntity<>(purchaseOrderService.fetchOrderHistory(customerId, from, to, lastThreeMonths), HttpStatus.OK);
+        } catch (ParseException e){
+            throw new InputValidationException("Date should be in yyyy-MM-dd format");
+        }
     }
 }

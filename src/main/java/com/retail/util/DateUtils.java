@@ -1,5 +1,7 @@
 package com.retail.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -25,5 +27,10 @@ public class DateUtils {
         c.setTime(date);
         c.add(Calendar.DATE, 1);
         return c.getTime();
+    }
+
+    public static Date convertStringToDate(String date) throws ParseException {
+        Date convertedDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        return convertedDate;
     }
 }
