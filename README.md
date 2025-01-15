@@ -34,8 +34,10 @@ This application is used to generate Reward points for Purchase orders.
     - If Both From and To date is chosen ,data will populate between the range.
     - If lastThreeMonths tag is given as true then the last three months data is populated.
     - If none of the options are chosen by default it populates all orders for the customer
-    - **Response**-
-          {
+    - **Response**
+
+```
+{
     "status": "SUCCESS",
     "statusDescription": "Details Fetched Successfully!",
     "data": {
@@ -68,6 +70,7 @@ This application is used to generate Reward points for Purchase orders.
         ]
     }
 }
+```
 
 # Unit Test Results
 ![Unit Test Results](https://github.com/Arun-krish/retail-store/blob/master/src/main/resources/testresults/TestResults.png)
