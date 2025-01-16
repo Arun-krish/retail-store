@@ -30,7 +30,8 @@ public class DateUtils {
     }
 
     public static Date convertStringToDate(String date) throws ParseException {
-        Date convertedDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-        return convertedDate;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        formatter.setLenient(false);
+        return formatter.parse(date);
     }
 }
